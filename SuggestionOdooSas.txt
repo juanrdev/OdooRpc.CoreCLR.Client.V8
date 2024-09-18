@@ -1,0 +1,21 @@
+private static Uri GetEndpointUri(OdooConnectionInfo connectionInfo, string endpoint)
+    {
+        // For OdooSaas in odoo.com
+        if (connectionInfo.Port == 0)
+        {
+            return new Uri(string.Format("{0}://{1}{2}",
+                GetConnectionProtocol(connectionInfo),
+                connectionInfo.Host,
+                endpoint
+            ));
+        }
+        else
+        {
+            return new Uri(string.Format("{0}://{1}:{2}{3}",
+                GetConnectionProtocol(connectionInfo),
+                connectionInfo.Host,
+                connectionInfo.Port,
+                endpoint
+            ));
+        }
+    }
